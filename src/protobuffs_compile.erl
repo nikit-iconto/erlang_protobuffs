@@ -28,7 +28,7 @@
 -compile(export_all).
 -else.
 -export([scan_file/1, scan_file/2, scan_string/2, scan_string/3,
-     generate_source/1, generate_source/2]).
+     generate_source/1, generate_source/2, parse_file/1, collect_full_messages/1]).
 -endif.
 
 -record(collected,{enum=[], msg=[], extensions=[], package}).
@@ -721,7 +721,7 @@ find_message_by_path(TypeName, [Msg | Tail]) ->
             Msg
     end.
 
-%% @hidden
+%% @hiddenl
 resolve_list_name(Name, _Package) when is_tuple(hd(Name)) ->
     [tuple_to_list(N) || N <- Name];
 resolve_list_name(Name, undefined) when is_integer(hd(Name)) ->
